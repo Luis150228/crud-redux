@@ -11,19 +11,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "../ui/card"
 import { Badge } from "../ui/badge"
 import { Button } from "../ui/button";
 import { Eraser, Pencil, UserRoundCheck, UserRoundPlus } from "lucide-react";
-
-const cuentas: {
-    id: number;
-    username: string;
-    name: string;
-    isFollow: boolean;
-}[] = [
-  {id: 1, username:'fenixRDevlf', name:'Rangel Diaz Luis Fher', isFollow: false},
-  {id: 2, username:'midulive', name:'Miguel Angel Duran', isFollow: true},
-  {id: 3, username:'clubamerica', name:'FC America', isFollow: false}
-]
+import { useAppSelector } from "@/hooks/useStore";
 
 export function TableDemo() {
+    const cuentas = useAppSelector((state) => state.users);
+    console.log(cuentas);
   return (
     <Card>
         <CardHeader>
