@@ -35,6 +35,10 @@
     gap: 1rem;
 }
 
+.format-cell-single{
+    display: flex;
+}
+
 .avatar-img {
     width: 32px;
     height: 32px;

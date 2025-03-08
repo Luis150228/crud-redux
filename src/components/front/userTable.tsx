@@ -11,10 +11,15 @@ import { Card, CardContent, CardHeader, CardTitle } from "../ui/card"
 import { Badge } from "../ui/badge"
 import { Button } from "../ui/button";
 import { Eraser, Pencil, UserRoundCheck, UserRoundPlus } from "lucide-react";
-import { useAppSelector } from "@/hooks/useStore";
+import { useAppSelector, useAppDispatch } from "@/hooks/useStore";
+import { deleteUserById, UsrId} from "@/store/users/slice";
 
 export function TableDemo() {
     const cuentas = useAppSelector((state) => state.users);
+    const dispatch = useAppDispatch();
+    const handleDelete = (id: UsrId) => {
+        dispatch(deleteUserById(id));
+    };
     console.log(cuentas);
   return (
     <Card>
@@ -47,12 +52,12 @@ export function TableDemo() {
                         {usr.name}
                     </TableCell>
                     <TableCell>{usr.username}</TableCell>
-                    <TableCell className="text-center">{usr.isFollow ? <UserRoundCheck />: <UserRoundPlus />}</TableCell>
+                    <TableCell>{usr.isFollow ? <UserRoundCheck />: <UserRoundPlus />}</TableCell>
                     <TableCell className="format-cell">
                         <Button type="button" color="primary">
                             <Pencil />
                         </Button>
-                        <Button type="button" color="danger">
+                        <Button type="button" color="danger" onClick={() => handleDelete(usr.id)}>
                             <Eraser />
                         </Button>
                     </TableCell>

@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 /**Aqui definimos la clase del objeto que vamos a procesar */
-type usrId = number
+export type UsrId = number
 export interface User {
     name: string;
     username: string;
@@ -9,7 +9,7 @@ export interface User {
 }
 
 export interface UserWhitId extends User {
-    id: usrId;
+    id: UsrId;
 }
 /**Aqui definimos la clase del objeto que vamos a procesar */
 
@@ -24,10 +24,10 @@ const initialState: UserWhitId[] = [
 
 //Aqui definimos el slice de usuarios las ordenes que se pueden ejecutar
 export const usersSlice = createSlice({
-  name: "users",
+  name: "cuentas",
   initialState,
   reducers: {
-    deleteUserById: (state, action: PayloadAction<usrId>) => {
+    deleteUserById: (state, action: PayloadAction<UsrId>) => {
         const id = action.payload;
         return state.filter((user) => user.id !== id);
     }
@@ -35,3 +35,5 @@ export const usersSlice = createSlice({
 });
 
 export default usersSlice.reducer;
+
+export const { deleteUserById } = usersSlice.actions;
